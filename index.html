@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<head xmlns="http://www.w3.org/1999/html">
+  <title>Survey</title>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/normalize.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/screen.css"/>
+</head>
+<body ng-app="surveyApp">
+<div class="container-fluid" ng-controller="mainCtrl">
+  <h1>Shampoo Survey</h1>
+
+  <h2>How Are We Doing?</h2>
+
+  <form>
+    <p>Please take a few minutes to fill out this survey on the parameters of the shampoo you have been using as part of
+      our research. We welcome your feedback and your answers will be kept confidential.</p>
+
+    <h3>Previous Product Information</h3>
+    <h4>Please let us know the specific brand of shampoo you were using prior to testing our product.</h4>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3" ng-repeat="i in shampooOptions">
+          <label class="radio-inline">
+            <input type="radio" name="shampoo" ng-click="setCorrectOption($index)" ng-checked="isFirst($index)"> {{i}}
+          </label>
+        </div>
+        <div class="col-md-3"
+        <label class="radio-inline">
+          <input type="radio" name="shampoo" value="Other" ng-model="data.shampooUsed"> Other
+        </label>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <label>
+            <input type="text" class="form-control" placeholder="Other" name="shampoo" ng-model="data.shampooUsed"
+                   ng-show="data.shampooUsed==='Other'">
+          </label>
+        </div>
+      </div>
+    </div>
+    <h4>Please rate the previously used shampoo on the following parameters on a scale of 1 to 10. (1 being least
+      effective to 10 being most effective)</h4>
+    <table class="table">
+      <thead>
+      <td></td>
+      <td ng-repeat="i in ratingOptions">{{i}}</td>
+      </thead>
+      <tbody>
+      <tr ng-repeat="(x, y) in data.usedRating">
+        <td>{{x}}</td>
+        <td ng-repeat="j in ratingOptions">
+          <input type="radio" ng-model="data.usedRating[x].rating" ng-checked="isFirst($index)">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <h3>Research Shampoo Parameters</h3>
+    <h4>Please rate the shampoo provided to you on the following parameters?</h4>
+    <table class="table">
+      <thead>
+      <td></td>
+      <td ng-repeat="i in ratingOptions">{{i}}</td>
+      </thead>
+      <tbody>
+      <tr ng-repeat="(x, y) in data.currentRating">
+        <td>{{x}}</td>
+        <td ng-repeat="j in ratingOptions">
+          <input type="radio" ng-model="data.currentRating[x].rating" ng-checked="isFirst($index)">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <h4>Would you recommend the product to friends or family?</h4>
+
+    <div class="row">
+      <div class="col-md-4" ng-repeat="i in recommendation">
+
+        <label class="radio-inline">
+          <input type="radio" name="recommendation" value="yes" ng-click="setRecommendation($index)"> {{i}}
+        </label>
+      </div>
+
+    </div>
+    <h5>Thank you for taking the time to fill out our survey. We rely on your feedback to help us improve our services.
+      Your input is greatly appreciated.</h5>
+
+    <div class="form-group">
+      <label for="exampleInputName2">Name</label>
+      <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe" ng-model="data.name"
+             required="">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail2">Email</label>
+      <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com"
+             ng-model="data.email" required="">
+    </div>
+    <button class="btn btn-primary" ng-click="submit()">Submit</button>
+  </form>
+</div>
+<script src="bower_components/angular/angular.js" type="text/javascript"></script>
+<script src="bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
+<script src="scripts/mainCtrl.js" type="text/javascript"></script>
+</body>
