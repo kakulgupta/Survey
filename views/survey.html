@@ -66,7 +66,7 @@
     <h4>Would you recommend the product to friends or family?</h4>
 
     <div class="row">
-      <div class="col-md-2" ng-repeat="i in recommendation">
+      <div class="col-md-1" ng-repeat="i in recommendation">
 
         <label class="radio-inline">
           <input type="radio" name="recommendation" value="yes" ng-click="setRecommendation($index)"> {{i}}
@@ -75,7 +75,7 @@
 
     </div>
 
-    <div class="form-group">
+    <div class="form-group name">
       <label for="exampleInputName2" class="col-sm-2 control-label">Name</label>
 
       <div class="col-sm-6"><input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe"
@@ -97,6 +97,7 @@
                                    placeholder="jane.doe@example.com" ng-model="data.email" required="">
       </div>
     </div>
+
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
