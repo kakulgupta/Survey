@@ -1,0 +1,104 @@
+<div class="container-fluid">
+  <h1>Shampoo Survey</h1>
+
+  <h2>How Are We Doing?</h2>
+
+  <form class="form-horizontal" ng-submit="submit()">
+    <p>Please take a few minutes to fill out this survey on the parameters of the shampoo you have been using as part of
+      our research. We welcome your feedback and your answers will be kept confidential.</p>
+
+    <h3>Previous Product Information</h3>
+    <h4>Please let us know the specific brand of shampoo you were using prior to testing our product.</h4>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3" ng-repeat="i in shampooOptions">
+          <label class="radio-inline">
+            <input type="radio" name="shampoo" ng-click="setCorrectOption($index)" ng-checked="isFirst($index)"> {{i}}
+          </label>
+        </div>
+        <div class="col-md-3"
+        <label class="radio-inline">
+          <input type="radio" name="shampoo" value="Other" ng-model="data.shampooUsed"> Other
+        </label>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <label>
+            <input type="text" class="form-control" placeholder="Other" name="shampoo" ng-model="data.shampooUsed"
+                   ng-show="data.shampooUsed==='Other'">
+          </label>
+        </div>
+      </div>
+    </div>
+    <h4>Please rate the previously used shampoo on the following parameters on a scale of 1 to 10. (1 being least
+      effective to 10 being most effective)</h4>
+    <table class="table">
+      <thead>
+      <td></td>
+      <td ng-repeat="i in ratingOptions">{{i}}</td>
+      </thead>
+      <tbody>
+      <tr ng-repeat="(x, y) in data.usedRating">
+        <td>{{x}}</td>
+        <td ng-repeat="j in ratingOptions">
+          <input type="radio" ng-model="data.usedRating[x].rating" ng-checked="isFirst($index)">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <h3>Research Shampoo Parameters</h3>
+    <h4>Please rate the shampoo provided to you on the following parameters?</h4>
+    <table class="table">
+      <thead>
+      <td></td>
+      <td ng-repeat="i in ratingOptions">{{i}}</td>
+      </thead>
+      <tbody>
+      <tr ng-repeat="(x, y) in data.currentRating">
+        <td>{{x}}</td>
+        <td ng-repeat="j in ratingOptions">
+          <input type="radio" ng-model="data.currentRating[x].rating" ng-checked="isFirst($index)">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <h4>Would you recommend the product to friends or family?</h4>
+
+    <div class="row">
+      <div class="col-md-4" ng-repeat="i in recommendation">
+
+        <label class="radio-inline">
+          <input type="radio" name="recommendation" value="yes" ng-click="setRecommendation($index)"> {{i}}
+        </label>
+      </div>
+
+    </div>
+    <h5>Thank you for taking the time to fill out our survey. We rely on your feedback to help us improve our services.
+      Your input is greatly appreciated.</h5>
+
+    <div class="form-group">
+      <label for="exampleInputName2" class="col-sm-2 control-label">Name</label>
+
+      <div class="col-sm-6"><input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe"
+                                   ng-model="data.name"
+                                   required=""></div>
+
+    </div>
+    <div class="form-group">
+      <label for="exampleInputAge2" class="col-sm-2 control-label">Age</label>
+
+      <div class="col-sm-1"><input type="number" max="100" min="1" class="form-control" id="exampleInputAge2"
+                                   ng-model="data.age" required="">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail2" class="col-sm-2 control-label">Email</label>
+
+      <div class="col-sm-6"><input type="email" class="form-control" id="exampleInputEmail2"
+                                   placeholder="jane.doe@example.com" ng-model="data.email" required="">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
