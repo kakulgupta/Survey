@@ -69,7 +69,7 @@
       <div class="col-md-1" ng-repeat="i in recommendation">
 
         <label class="radio-inline">
-          <input type="radio" name="recommendation" value="yes" ng-click="setRecommendation($index)"> {{i}}
+          <input type="radio" name="recommendation" value="yes" ng-click="setRecommendation($index)" ng-checked="isFirst($index)"> {{i}}
         </label>
       </div>
 
