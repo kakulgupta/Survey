@@ -79,8 +79,8 @@ angular.module('surveyApp').controller('mainCtrl', function ($scope, $location) 
     name: null,
     email: null,
     age: null,
-    recommendation: null,
-    shampooUsed: null,
+    recommendation: "Yes",
+    shampooUsed: "Biotique",
     usedRating: {
       "Shine": {"rating": 0},
       "Volume": {"rating": 0},
